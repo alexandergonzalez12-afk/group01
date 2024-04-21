@@ -8,7 +8,7 @@
 ;	Nestor Alvarez
 ;		-> % de contribucion
 ;
-; 	Ricardo Garcia aka THE GOAT
+; 	Ricardo Garcia
 ;		-> % de contribucion
 ;
 ; 	Alexander J. Gonzalez
