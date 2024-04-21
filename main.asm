@@ -72,8 +72,9 @@ ACEFHSLOhi	.word	0xEF,0x9C,0x9F,0x8F,0x6F,0xB7,0x1C,0xFC,0x00
 ;					 HB	  HB   LB
 IT			.word	0x90,0x80,0x50			                                    ;I				10010000b, 01010000b
 											                                    ;T				10000000b, 01010000b
-;					 HB	  LB   LB
-DX          .word 	0x0C, 0x88, 0xAA
+Dhigh		.word		0x0C
+DLow		.word	 0x88
+Xhigh         .word  0xAA
 MNRVhi		.word	0x6C,0x6C,0xCF,0x0C			                                ;M				01101100b, 10100000b
 MNRVlo		.word	0xA0,0x82,0x02,0x28		                                    ;N				01101100b, 10000010b
 											                                    ;R				11001111b, 00000010b
@@ -96,7 +97,7 @@ TwoToNine	.word	0xDB,0xF3,0x67,0xBF,0xE0,0xFF,0xF7,0x00						;2				11011011b, 00
 timerNums	.word	0xFC,0x60,0xDB,0xF1,0x67,0xB7,0xBF,0xE0,0xFF,0xF7
 
 
-RESET       mov.w   #__STACK_END,SP         ; Initialize stackpointer
+`ESET       mov.w   #__STACK_END,SP         ; Initialize stackpointer
 StopWDT     mov.w   #WDTPW|WDTHOLD,&WDTCTL  ; Stop watchdog timer
 
 ;-------------------------------------------------------------------------------
@@ -228,10 +229,10 @@ writeTEAM:
 
 			push	#seg6					; Push LCD display address to stack
 			mov		#1, R5					; Push high
-			push	TwoToNine(R5)			; &
+			push	ONE(R5)			; &
 			push	#1+seg6					; low bytes of a letter/digit to the stack
-			mov 	#15, R5					; Prints 2 on the LCD
-			push	TwoToNine(R5)			;
+			mov 	#2, R5					; Prints 1 on the LCD
+			push	ONE(R5)			;
 
 			call	#writeToLCD
 
@@ -304,21 +305,21 @@ firstName:
 
 			call	#writeToLCD
 
-			push	#seg1					; Push LCD display address to stack
+			push	#seg5					; Push LCD display address to stack
 			mov		#5, R5					; Push high
 			push	MNRVhi(R5)				; &
-			push	#1+seg1					; low bytes of a letter/digit to the stack
+			push	#1+seg5					; low bytes of a letter/digit to the stack
 			mov 	#5, R5					; Prints R on the LCD
 			push	MNRVlo(R5)				;
 
 			call	#writeToLCD
 
 			push	#seg6					; Push LCD display address to stack
-			mov		#5, R5					; Push high
-			push	MNRVhi(R5)				; &
+			mov		#1, R5					; Push high
+			push	Dhigh(R5)				; &
 			push	#1+seg6					; low bytes of a letter/digit to the stack
-			mov 	#5, R5					; Prints D on the LCD
-			push	MNRVlo(R5)				;
+			mov 	#1, R5					; Prints D on the LCD
+			push	DLow(R5)				;
 
 			call	#writeToLCD
 
