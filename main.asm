@@ -57,18 +57,15 @@ paused		.word	0						; bool = to determine if paused or not
 curLCDSeg	.word	1
 reachedZero	.word	0
 
-;   				    |-----------------HB----------------|	 LB						LETTERS		   HB         LB
-ACDEFHSLOXhi	.word	0xEF,0x9C,0xC48,0x9F,0x8F,0x6F,0xB7,0x1C,0xAA,0xFC,0x00
-																				;A				11101111b, 00000000b
+;   				 |-----------------HB----------------|	 LB						LETTERS		   HB         LB
+ACEFHSLOhi	.word	0xEF,0x9C,0x9F,0x8F,0x6F,0xB7,0x1C,0xFC,0x00				;A				11101111b, 00000000b
 											                                    ;C				10011100b, 00000000b
-											                                    ;D              00001100b, 10001000b
 											                                    ;E				10011111b, 00000000b
 											                                    ;F				10001111b, 00000000b
 											                                    ;H				01101111b, 00000000b
 											                                    ;S				10110111b, 00000000b
 											                                    ;L				00011100b, 00000000b
 											                                    ;O				11111100b, 00000000b
-											                                    ;X              00000000b, 10101010b
 ;					 HB	  HB   LB
 IT			.word	0x90,0x80,0x50			                                    ;I				10010000b, 01010000b
 											                                    ;T				10000000b, 01010000b
@@ -191,19 +188,19 @@ writeTEAM:
 
 			push	#seg2					; Push LCD display address to stack
 			mov		#5, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg2					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints E on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
 			push	#seg3					; Push LCD display address to stack
 			mov		#1, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg3					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints A on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
@@ -287,10 +284,10 @@ firstName:
 
 			push	#seg3					; Push LCD display address to stack
 			mov		#3, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg3					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints C on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
@@ -305,10 +302,10 @@ firstName:
 
 			push	#seg5					; Push LCD display address to stack
 			mov		#15, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg5					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints O on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
@@ -331,19 +328,19 @@ secondName:
 
 			push	#seg1					; Push LCD display address to stack
 			mov		#3, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg1					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints C on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
 			push	#seg2					; Push LCD display address to stack
 			mov		#1, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg2					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints A on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
@@ -358,28 +355,28 @@ secondName:
 
 			push	#seg4					; Push LCD display address to stack
 			mov		#13, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg4					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints L on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
 			push	#seg5					; Push LCD display address to stack
 			mov		#15, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg5					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints O on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
 			push	#seg6					; Push LCD display address to stack
 			mov		#11, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg6					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints S on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
@@ -392,10 +389,10 @@ thirdName:
 
 			push	#seg1					; Push LCD display address to stack
 			mov		#7, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg1					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints F on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
@@ -410,10 +407,10 @@ thirdName:
 
 			push	#seg3					; Push LCD display address to stack
 			mov		#1, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg3					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints A on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
@@ -428,10 +425,10 @@ thirdName:
 
 			push	#seg5					; Push LCD display address to stack
 			mov		#3, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg5					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints C on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
@@ -453,19 +450,19 @@ fourthName:
 
 			push	#seg1					; Push LCD display address to stack
 			mov		#3, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg1					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints C on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
 			push	#seg2					; Push LCD display address to stack
 			mov		#9, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg2					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints H on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
@@ -489,10 +486,10 @@ fourthName:
 
 			push	#seg5					; Push LCD display address to stack
 			mov		#11, R5					; Push high
-			push	ACDEFHSLOXhi(R5)			; &
+			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg5					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints S on the LCD
-			push	ACDEFHSLOXhi(R5)			;
+			push	ACEFHSLOhi(R5)			;
 
 			call	#writeToLCD
 
