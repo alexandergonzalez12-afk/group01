@@ -5,17 +5,17 @@
 ; Prof. Jose Navarro Figueroa
 ;
 ; TEAM01:
+;	Nestor Alvarez
+;		-> % de contribucion
 ;
-;		-> 11% de contribucion
-;
-; 	Ricardo Garcia
-;		-> 12% de contribucion
+; 	Ricardo Garcia aka THE GOAT
+;		-> % de contribucion
 ;
 ; 	Alexander J. Gonzalez
-;		-> 65% de contribucion
+;		-> % de contribucion
 ;
-;
-;		-> 12% de contribucion
+;	Eric Flores
+;		-> % de contribucion
 ;-------------------------------------------------------------------------------
             .cdecls C,LIST,"msp430.h"       ; Include device header file
 
