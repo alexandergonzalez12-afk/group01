@@ -97,7 +97,7 @@ TwoToNine	.word	0xDB,0xF3,0x67,0xBF,0xE0,0xFF,0xF7,0x00						;2				11011011b, 00
 timerNums	.word	0xFC,0x60,0xDB,0xF1,0x67,0xB7,0xBF,0xE0,0xFF,0xF7
 
 
-`ESET       mov.w   #__STACK_END,SP         ; Initialize stackpointer
+RESET       mov.w   #__STACK_END,SP         ; Initialize stackpointer
 StopWDT     mov.w   #WDTPW|WDTHOLD,&WDTCTL  ; Stop watchdog timer
 
 ;-------------------------------------------------------------------------------
