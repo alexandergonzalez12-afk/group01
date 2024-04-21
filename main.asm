@@ -57,19 +57,23 @@ paused		.word	0						; bool = to determine if paused or not
 curLCDSeg	.word	1
 reachedZero	.word	0
 
-;   				 |-----------------HB----------------|	 LB						LETTERS		   HB         LB
-ACEFHSLOhi	.word	0xEF,0x9C,0x9F,0x8F,0x6F,0xB7,0x1C,0xFC,0x00				;A				11101111b, 00000000b
+;   				    |-----------------HB----------------|	 LB						LETTERS		   HB         LB
+ACEFHSLOhi	.word	0xEF,0x9C,0x9F,0x8F,0x6F,0xB7,0x1C,0xFC,0x00
+																				;A				11101111b, 00000000b
 											                                    ;C				10011100b, 00000000b
+											                                    ;D              00001100b, 10001000b
 											                                    ;E				10011111b, 00000000b
 											                                    ;F				10001111b, 00000000b
 											                                    ;H				01101111b, 00000000b
 											                                    ;S				10110111b, 00000000b
 											                                    ;L				00011100b, 00000000b
 											                                    ;O				11111100b, 00000000b
+											                                    ;X              00000000b, 10101010b
 ;					 HB	  HB   LB
 IT			.word	0x90,0x80,0x50			                                    ;I				10010000b, 01010000b
 											                                    ;T				10000000b, 01010000b
-
+;					 HB	  LB   LB
+DX          .word 	0x0C, 0x88, 0xAA
 MNRVhi		.word	0x6C,0x6C,0xCF,0x0C			                                ;M				01101100b, 10100000b
 MNRVlo		.word	0xA0,0x82,0x02,0x28		                                    ;N				01101100b, 10000010b
 											                                    ;R				11001111b, 00000010b
@@ -265,10 +269,10 @@ firstName:
 			call	#clearLCD
 
 			push	#seg1					; Push LCD display address to stack
-			mov		#7, R5					; Push high
+			mov		#5, R5					; Push high
 			push	MNRVhi(R5)				; &
 			push	#1+seg1					; low bytes of a letter/digit to the stack
-			mov 	#7, R5					; Prints V on the LCD
+			mov 	#5, R5					; Prints R on the LCD
 			push	MNRVlo(R5)				;
 
 			call	#writeToLCD
@@ -292,20 +296,20 @@ firstName:
 			call	#writeToLCD
 
 			push	#seg4					; Push LCD display address to stack
-			mov		#3, R5					; Push high
-			push	IT(R5)					; &
+			mov		#1, R5					; Push high
+			push	ACEFHSLOhi(R5)					; &
 			push	#1+seg4					; low bytes of a letter/digit to the stack
-			mov 	#5, R5					; Prints T on the LCD
-			push	IT(R5)					;
+			mov 	#17, R5					; Prints A on the LCD
+			push	ACEFHSLOhi(R5)					;
 
 			call	#writeToLCD
 
-			push	#seg5					; Push LCD display address to stack
-			mov		#15, R5					; Push high
-			push	ACEFHSLOhi(R5)			; &
-			push	#1+seg5					; low bytes of a letter/digit to the stack
-			mov 	#17, R5					; Prints O on the LCD
-			push	ACEFHSLOhi(R5)			;
+			push	#seg1					; Push LCD display address to stack
+			mov		#5, R5					; Push high
+			push	MNRVhi(R5)				; &
+			push	#1+seg1					; low bytes of a letter/digit to the stack
+			mov 	#5, R5					; Prints R on the LCD
+			push	MNRVlo(R5)				;
 
 			call	#writeToLCD
 
@@ -313,7 +317,7 @@ firstName:
 			mov		#5, R5					; Push high
 			push	MNRVhi(R5)				; &
 			push	#1+seg6					; low bytes of a letter/digit to the stack
-			mov 	#5, R5					; Prints R on the LCD
+			mov 	#5, R5					; Prints D on the LCD
 			push	MNRVlo(R5)				;
 
 			call	#writeToLCD
@@ -489,7 +493,7 @@ fourthName:
 			push	ACEFHSLOhi(R5)			; &
 			push	#1+seg5					; low bytes of a letter/digit to the stack
 			mov 	#17, R5					; Prints S on the LCD
-			push	ACEFHSLOhi(R5)			;
+			push	 (R5)			;
 
 			call	#writeToLCD
 
