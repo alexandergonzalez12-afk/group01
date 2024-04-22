@@ -223,7 +223,7 @@ writeTEAM:
 			mov		#1, R5					; Push high
 			push	ZERO(R5)				; &
 			push	#1+seg5					; low bytes of a letter/digit to the stack
-			mov 	#3, R5					; Prints M on the LCD
+			mov 	#3, R5					; Prints 0 on the LCD
 			push	ZERO(R5)				;
 
 			call	#writeToLCD
