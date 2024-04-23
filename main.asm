@@ -777,7 +777,7 @@ startCountdown:
 			ret
 
 countdownSetup:
-			mov		#125000, TA0CCR0		; Set clock cycles (1s)
+			mov		#2083, TA0CCR0		; Set clock cycles (60s)
 			;bis.b	#BIT0, &P1OUT			; For debugging - turn on red LED
 			mov     #CCIE, &TA0CCTL0        ; Enable TACCR0 interrupt
 
